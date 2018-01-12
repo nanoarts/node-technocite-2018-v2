@@ -3,8 +3,9 @@ const fs = require('fs')
 
 const routes = [
     { url: '/', controller: 'home'},                        // quand il a rien dans url tu vas sur le home
-    { url: '/about', controller: 'about' }                        // quand il a rien dans url tu vas sur le home
-
+    { url: '/about', controller: 'about' },                        // quand il a rien dans url tu vas sur le home
+    { url: '/amis', controller: 'amis' }                        // quand il a rien dans url tu vas sur le home
+    
 ]
 
 
