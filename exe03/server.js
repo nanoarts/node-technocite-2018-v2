@@ -20,6 +20,7 @@ const getPageFromSiteAndStock = (url) => {
     })
 }
 
+
 const checkFinishedProcess = () => {
     sitesLoaded++
     if(sitesLoaded === sitesToHack.length){
@@ -35,7 +36,7 @@ const checkFinishedProcess = () => {
 }
 
 const init = ()=>{
-    sitesToHack.map(item => getPageFromSiteAndStock(item))
+    sitesToHack.map(item => getPageFromSiteAndStock(item)) // .map , il trouve 3 ele http  et dans la function on passe les arguments ( en l'occurence item= www.xxxx.com)
 }
 
 init()
