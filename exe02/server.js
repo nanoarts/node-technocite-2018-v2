@@ -27,16 +27,27 @@ readFile('liste.txt', showMsg)
 
 
 
-
+//----------------------------------------
 // je rajoute dans le terminal, par exemple :  node server.js add TEST
+
 const [action, value] = [process.argv[2],process.argv[3]]  // donc si j'ai mis add test  add remplace action et test = value
 
-const possibleActions = ['add', 'remove']  // on crée une var en disant que on peut avoir que add et remove
-const checkActions = (action) => {  // action = add
-    return possibleActions.filter(item => item === action).lenght > 0  // on compare dans possible actions ( add remove) si c'est === a dans la var action à add et donc que c'est 1
+const possibleActions = ['add', 'remove']  // on crée une var en disant : on peut avoir que "add" ou "remove"
+const fileMger = require ('./tpk/fileManager')
+const checkActions = (action) => { 
+    return possibleActions.filter(item => item === action).length > 0  // on compare dans possible actions ( add remove) si c'est === a dans la var action à add et donc que c'est 1
 }
 
 const checkValue = (value) => (value) ? true : false  // ici c'est value la function dit si il y a une value if(value) ici y a test tu me return true sinon tu me retourn false
+
+// version longue de la fonction precedente :
+// const checkValue(value){
+//     let returnValue = false
+//     if ( vaue !== null || value !== undefined || value !== 0 || value !== Nan) {
+//         returnValue = true 
+//     }
+
+// }
 
 
 const init = () => {
@@ -46,5 +57,8 @@ const init = () => {
                                     -remove`)
     } else if (!checkValue(value)) { // si check VALUE est false on as rien mis apres le add dans le terminal
         console.log('Error : You need give value for insertion !!!')        
-    } 
+    } else {
+        fileMger.init('liste.txt', action, value)  //
+    }
 }
+init()
