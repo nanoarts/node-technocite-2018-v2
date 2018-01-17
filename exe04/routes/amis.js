@@ -35,5 +35,5 @@ const generateHtml = (tpl,json) => {
     // return htmlStr
     
     // la meme chose mais en raccourcis
-    return tpl.replace('%friends%', JSON.parse(json).map(item => item.name).join('</li><li>'))
+    return tpl.replace('%friends%', JSON.parse(json).map(item => item.name).join('</li><li>'))  // la meme chose qu'au dessus en raccourcis 
 }

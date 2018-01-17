@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Ma liste de livres</h1>
+    <ul id="liste">
+        
+    </ul>
+    
+    <form id="book-form">
+        <label for="title">TITRE</label>
+        <input type="text" name="title" id="title">
+        <label for="author">TITRE</label>
+        <input type="text" name="title" id="author">
+        <input type="submit" value="Sauvegarder">
+    </form>
+
+        <script>
+            // document.getElementById('book-form').addEventListener('submit', function(e) {
+            //      e.preventDefault();  // empeche l'action par default d'un submit
+            //      let form = new FormData(document.getElementById('book-form'))
+            //      let object = {}
+            // })
+
+            fetch('/api/books')  // native depuis es6 2015
+            .then(response =>{
+                response.json().then(data => {
+                    let listeStr = data.reduce((prev,current)=> {
+                        return `${prev}\n<li><b>titre</b>: ${current.title} - <b>Auteur</b>: ${current.author}</li>`
+                    },'')  // les '' pour commencer par un string vide vu que c'es tun objet dans le json [{}]  
+                    
+                    document.getElementById('liste').innerHTML=listeStr;
+                })   
+            }).catch(e =>{
+                console.log(e)
+            })
+        </script>
+
+</body>
+</html>

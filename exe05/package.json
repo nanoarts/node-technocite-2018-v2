@@ -1,0 +1,14 @@
+{
+  "name": "exe05",
+  "version": "0.0.1",
+  "description": "excercise 5",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "JORI",
+  "license": "MIT",
+  "dependencies": {
+    "es6-promisify": "^5.0.0"
+  }
+}
