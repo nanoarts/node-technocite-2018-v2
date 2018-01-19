@@ -15,24 +15,53 @@
     <form id="book-form">
         <label for="title">TITRE</label>
         <input type="text" name="title" id="title">
-        <label for="author">TITRE</label>
-        <input type="text" name="title" id="author">
+        <label for="author">Author</label>
+        <input type="text" name="author" id="author">
         <input type="submit" value="Sauvegarder">
     </form>
 
         <script>
-            // document.getElementById('book-form').addEventListener('submit', function(e) {
-            //      e.preventDefault();  // empeche l'action par default d'un submit
-            //      let form = new FormData(document.getElementById('book-form'))
-            //      let object = {}
-            // })
+            document.getElementById('book-form').addEventListener('submit', function(e) {
+                 e.preventDefault();  // empeche l'action par default d'un submit
 
-            fetch('/api/books')  // native depuis es6 2015
+                 let form = new FormData(document.getElementById('book-form'))   // FormData : es6 
+                 console.log(form)
+                 let object = {};
+                 form.forEach((value,key)=> {  // on fait une boucle avec la value xxxx / xxx et sa key title et author  { title: "fdg" , author :"jjgg"}
+                     object[key]=value;
+                     console.log(object);
+                     
+                 })
+
+                 var json = JSON.stringify(object);  // converti en chaine de caractere
+                 console.log(json);
+
+                 fetch('api/books',{
+                     header : {
+                         'Accept' : 'application/json',
+                         'Content-Type' : 'application/json'
+                     },
+                     method:'POST',   // quand il fait en post = ca envoi l'information au serveur
+                     body: json
+                 }).then(response =>{
+                    response.json().then(data => {
+                        let listeStr = data.reduce((prev,current)=> {
+                            return `${prev}\n<li><b>titre</b>: ${current.title} - <b>Auteur</b>: ${current.author}</li>`
+                        },'')  // les '' pour commencer par un string vide vu que c'es tun objet dans le json [{}]  
+                        
+                        document.getElementById('liste').innerHTML=listeStr;
+                    })   
+                }).catch(e =>{
+                    console.log(e)
+                }) 
+            })
+
+            fetch('/api/books')  // native depuis es6 2015 fetch = $.get
             .then(response =>{
                 response.json().then(data => {
                     let listeStr = data.reduce((prev,current)=> {
                         return `${prev}\n<li><b>titre</b>: ${current.title} - <b>Auteur</b>: ${current.author}</li>`
-                    },'')  // les '' pour commencer par un string vide vu que c'es tun objet dans le json [{}]  
+                    },'')  // les '' pour commencer par un string vide vu que c'est un objet dans le json [{}]  
                     
                     document.getElementById('liste').innerHTML=listeStr;
                 })   
