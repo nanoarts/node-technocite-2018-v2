@@ -20,11 +20,16 @@
         <input type="submit" value="Sauvegarder">
     </form>
 
+
+
         <script>
+
+            // LE FORM QUI PERMET DE RAJOUTER UN Title et Author à notre liste :
+
             document.getElementById('book-form').addEventListener('submit', function(e) {
                  e.preventDefault();  // empeche l'action par default d'un submit
 
-                 let form = new FormData(document.getElementById('book-form'))   // FormData : es6 
+                 let form = new FormData(document.getElementById('book-form'))   // FormData : es6   ---- il met en forme le data en type object 
                  console.log(form)
                  let object = {};
                  form.forEach((value,key)=> {  // on fait une boucle avec la value xxxx / xxx et sa key title et author  { title: "fdg" , author :"jjgg"}

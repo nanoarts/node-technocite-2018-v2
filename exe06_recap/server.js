@@ -9,7 +9,7 @@ const routes = [
 
 const router = (req,res) => {
     let routeIndex = routes.findIndex((item)=> item.url === req.url)   // la var routeIndex = 0 1 si il y a une requete d'adresse qui est = a / ( pour home ) ou /api/books
-    if (routeIndex !== -1) {  // donc si y a une requet differente de -1 donc qui contient 0 ou 1 ( ligne au dessus)
+    if (routeIndex !== -1) {  // donc si y a une req differente de -1 donc qui contient 0 ou 1 ( ligne au dessus)
         require(`${process.cwd()}/controllers/${routes[routeIndex].controller}`) (req,res)  // alors on prend le chemin qui correspond (0 ou 1) et son controller correspondant donc "home ou "books" et on envoi 
     }
 }
