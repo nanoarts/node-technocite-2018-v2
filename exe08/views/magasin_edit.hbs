@@ -1,0 +1,48 @@
+<h2>
+    {{#if magasin.name}} Edit {{else}} Add {{/if}} Magasin
+</h2>
+
+<form action="/magasins/add/{{magasin._id}}" method="POST" class="card" enctype="multipart/form-data">
+
+    <label for="name">
+        Name :
+        <input type="text" id="name" name="name" value="{{magasin.name}}">
+    </label>
+
+    <label for="slug">
+        Slug :
+        <input type="text" id="slug" name="slug" value="{{magasin.slug}}">
+    </label>
+
+    <label for="photo">
+        Photo :
+        <input type="file" id="photo" accept="image/gif, image/png, image/jpeg" name="photo" value="{{magasin.photo}}">
+    </label>
+
+    <label for="description">
+        Description :
+        <textarea id="description" name="description" value="{{magasin.description}}"></textarea>
+    </label>
+
+
+    <label for="location[address]">
+        Adresse :
+        <input type="text" id="address" name="location[address]" value="{{magasin.location.adress}}">
+    </label>
+
+    <label for="location[coordinates][0]">
+        Longitude :
+        <input type="text" id="lng" name=location[coordinates][0] value="{{magasin.location.coordinates.[0]}}">
+    </label>
+
+
+    <label for="location[coordinates][1]">
+        Latitude :
+        <input type="text" id="lat" name=location[coordinates][1] value="{{magasin.location.coordinates.[1]}}">
+    </label>
+
+
+
+
+    <input type="submit" value="Ajout du magasin">
+</form>
